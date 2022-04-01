@@ -1,0 +1,81 @@
+name: dopin_test_3
+description: A new Flutter project.
+
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.16.1 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  flutter_hooks: ^0.18.0
+  hooks_riverpod: ^1.0.3
+  go_router: ^3.0.6
+  flutter_svg: ^1.0.3
+  cached_network_image: ^3.2.0
+  octo_image: ^1.0.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^1.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/fun.png
+    - assets/images/sign.jpg
+    - assets/icons/location3D.png
+    - assets/icons/earth3D.png
+    - assets/flags/fr.svg
+    - assets/flags/ga.svg
+    - assets/flags/tr.svg
+
+  fonts:
+    # use this font in bold text
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-ExtraLight.ttf
+          weight: 100
+        - asset: assets/fonts/Poppins-Light.ttf
+          weight: 200
+        - asset: assets/fonts/Poppins-Thin.ttf
+          weight: 300
+        - asset: assets/fonts/Poppins-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Poppins-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Poppins-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Poppins-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Poppins-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/Poppins-Black.ttf
+          weight: 900
+    # use this font for light font
+    - family: SFProDisplay
+      fonts:
+        - asset: assets/fonts/SFProDisplay-Ultralight.ttf
+          weight: 100
+        - asset: assets/fonts/SFProDisplay-Light.ttf
+          weight: 200
+        - asset: assets/fonts/SFProDisplay-Thin.ttf
+          weight: 300
+        - asset: assets/fonts/SFProDisplay-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/SFProDisplay-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/SFProDisplay-Semibold.ttf
+          weight: 600
+        - asset: assets/fonts/SFProDisplay-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/SFProDisplay-Heavy.ttf
+          weight: 800
+        - asset: assets/fonts/SFProDisplay-Black.ttf
+          weight: 900
