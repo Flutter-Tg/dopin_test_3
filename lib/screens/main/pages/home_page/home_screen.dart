@@ -142,51 +142,54 @@ class HomeScreen extends HookConsumerWidget {
                                       ref.watch(homePageIndexProvider.state);
                                   final checkIfUserIsInMapPage =
                                       ref.watch(checkIfUserIsInMapPageProvider);
-                                  return pageIndex.state == 0
-                                      ? InkWell(
-                                          onTap: () {
-                                            checkIfUserIsInMapPage;
-                                            pageIndex.state = 1;
-                                          },
-                                          child: Container(
-                                            width: 48,
-                                            height: 48,
-                                            padding: const EdgeInsets.all(10),
-                                            decoration: BoxDecoration(
-                                              color: isDark == true
-                                                  ? Colors.white
-                                                      .withOpacity(0.1)
-                                                  : const Color(0xfff7f7f7),
-                                              shape: BoxShape.circle,
-                                            ),
-                                            child: Image.asset(
-                                              earthIcon,
-                                              fit: BoxFit.cover,
-                                            ),
+                                  return AnimatedCrossFade(
+                                    firstChild: InkWell(
+                                      onTap: () {
+                                        checkIfUserIsInMapPage;
+                                        pageIndex.state = 1;
+                                      },
+                                      child: Container(
+                                        width: 48,
+                                        height: 48,
+                                        padding: const EdgeInsets.all(10),
+                                        decoration: BoxDecoration(
+                                          color: isDark == true
+                                              ? Colors.white.withOpacity(0.1)
+                                              : const Color(0xfff7f7f7),
+                                          shape: BoxShape.circle,
+                                        ),
+                                        child: Image.asset(
+                                          earthIcon,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                    secondChild: InkWell(
+                                      onTap: () {
+                                        checkIfUserIsInMapPage;
+                                        pageIndex.state = 0;
+                                      },
+                                      child: Container(
+                                          width: 48,
+                                          height: 48,
+                                          padding: const EdgeInsets.all(10),
+                                          decoration: BoxDecoration(
+                                            color: isDark == true
+                                                ? Colors.white.withOpacity(0.1)
+                                                : const Color(0xfff7f7f7),
+                                            shape: BoxShape.circle,
                                           ),
-                                        )
-                                      : InkWell(
-                                          onTap: () {
-                                            checkIfUserIsInMapPage;
-                                            pageIndex.state = 0;
-                                          },
-                                          child: Container(
-                                            width: 48,
-                                            height: 48,
-                                            padding: const EdgeInsets.all(10),
-                                            decoration: BoxDecoration(
-                                              color: isDark == true
-                                                  ? Colors.white
-                                                      .withOpacity(0.1)
-                                                  : const Color(0xfff7f7f7),
-                                              shape: BoxShape.circle,
-                                            ),
-                                            child: Image.asset(
-                                              earthIcon,
-                                              fit: BoxFit.cover,
-                                            ),
-                                          ),
-                                        );
+                                          child: const Icon(
+                                            Icons.print_outlined,
+                                            size: 30,
+                                            color: Colors.white,
+                                          )),
+                                    ),
+                                    crossFadeState: pageIndex.state == 0
+                                        ? CrossFadeState.showFirst
+                                        : CrossFadeState.showSecond,
+                                    duration: const Duration(milliseconds: 300),
+                                  );
                                 },
                               ),
                               const SizedBox(width: 10),
