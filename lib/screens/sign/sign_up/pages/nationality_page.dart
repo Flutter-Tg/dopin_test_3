@@ -28,7 +28,7 @@ class NationalitPage extends ConsumerWidget {
           ),
         ),
         const SizedBox(height: 20),
-        InputBox(title: 'Nationality', child: Container()),
+        const InputBox(title: 'Nationality', child: SizedBox()),
         InkWell(
           onTap: () {},
           child: const CountinueBtn(),

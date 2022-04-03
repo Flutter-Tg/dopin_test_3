@@ -26,7 +26,7 @@ class VerificationPhoneSignUpPage extends ConsumerWidget {
             fontWeight: FontWeight.w600,
           ),
         ),
-        InputBox(title: 'Verification Code', child: Container()),
+        const InputBox(title: 'Verification Code', child: SizedBox()),
         const SizedBox(height: 13),
         Container(
           width: double.infinity,

@@ -74,7 +74,8 @@ class ExplorNotif extends StatelessWidget {
               borderRadius: BorderRadius.circular(34),
               border: Border.all(width: 1, color: primaryGrey),
             ),
-            child: const Center(
+            child: const Align(
+              alignment: Alignment.center,
               child: Text(
                 'PROFILE',
                 style: TextStyle(

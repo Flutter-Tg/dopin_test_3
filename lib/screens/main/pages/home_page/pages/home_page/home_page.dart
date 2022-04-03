@@ -1,45 +1,55 @@
-import 'dart:ui';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import 'package:dopin_test_3/animations/show_fade_animation.dart';
 import 'package:dopin_test_3/config/constans/app_constans.dart';
 import 'package:dopin_test_3/config/constans/assets_path.dart';
 import 'package:dopin_test_3/global_widgets/nested_avatar.dart';
 import 'package:dopin_test_3/global_widgets/tabbar_custom.dart';
-import 'package:dopin_test_3/utils/styles/gradient_icon.dart';
-import 'package:dopin_test_3/utils/styles/gradient_text.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:go_router/go_router.dart';
+import 'package:dopin_test_3/screens/main/pages/home_page/home_controller.dart';
+import 'package:dopin_test_3/utils/remove_scroll_glow.dart';
+import 'package:dopin_test_3/utils/styles/back_blure.dart';
 
 import 'tabs/Explore.dart';
 import 'tabs/nearby.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends HookConsumerWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage>
-    with AutomaticKeepAliveClientMixin {
-  @override
-  Widget build(BuildContext context) {
-    super.build(context);
+  Widget build(BuildContext context, WidgetRef ref) {
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
         statusBarIconBrightness: Brightness.dark,
       ),
     );
-    return Stack(
-      children: [
-        DefaultTabController(
-          length: 3,
-          initialIndex: 0,
-          child: NestedScrollView(
+    final tabSticky = ref.read(tabStickyProvider.state);
+    final _controller = useScrollController();
+    _controller.addListener(() {
+      if (_controller.offset >= 150) {
+        tabSticky.state = true;
+      } else {
+        tabSticky.state = false;
+      }
+    });
+
+    return DefaultTabController(
+      length: 3,
+      initialIndex: 0,
+      child: Stack(
+        children: [
+          NestedScrollView(
+            controller: _controller,
             headerSliverBuilder: (context, innerBoxIsScrolled) => [
               SliverToBoxAdapter(
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 125, left: 20, right: 20),
+                  padding: EdgeInsets.only(
+                    top: 80 + MediaQuery.of(context).viewPadding.top,
+                    left: 20,
+                    right: 20,
+                  ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -109,19 +119,67 @@ class _HomePageState extends State<HomePage>
                 ),
               ),
             ],
-            body: TabBarView(
-              children: [
-                const NearbyTab(),
-                const ExploreTab(),
-                Container(),
-              ],
+            body: const RemoveScrollGlow(
+              child: TabBarView(
+                children: [
+                  NearbyTab(),
+                  ExploreTab(),
+                  SizedBox(),
+                ],
+              ),
             ),
           ),
-        ),
-      ],
+          Positioned(
+            top: 60 + MediaQuery.of(context).viewPadding.top,
+            child: Consumer(
+              builder: ((context, ref, child) {
+                final _tabSticky = ref.watch(tabStickyProvider.state);
+                return _tabSticky.state
+                    ? ShowFaeAnimations(
+                        widgetChild: BackBlur(
+                          child: SizedBox(
+                            height: 60,
+                            width: MediaQuery.of(context).size.width,
+                            child: ColoredBox(
+                              color: primaryBlue.withOpacity(0.95),
+                              child: const TabBar(
+                                  isScrollable: false,
+                                  labelPadding: EdgeInsets.zero,
+                                  padding: EdgeInsets.zero,
+                                  labelColor: Colors.white,
+                                  labelStyle: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: fontTitr,
+                                      fontFamily: 'Poppins'),
+                                  unselectedLabelColor:
+                                      Color.fromRGBO(255, 255, 255, 0.7),
+                                  unselectedLabelStyle: TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: fontTitle,
+                                    fontFamily: 'Poppins',
+                                  ),
+                                  indicator: BoxDecoration(),
+                                  tabs: [
+                                    Tab(
+                                      text: 'Nearby',
+                                    ),
+                                    Tab(
+                                      text: 'Explore',
+                                    ),
+                                    Tab(
+                                      text: 'MyDopin',
+                                    ),
+                                  ]),
+                            ),
+                          ),
+                        ),
+                      )
+                    : const SizedBox();
+              }),
+            ),
+          ),
+        ],
+      ),
     );
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }

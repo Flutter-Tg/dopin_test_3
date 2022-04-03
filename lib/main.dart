@@ -26,13 +26,17 @@ class Dopin extends ConsumerWidget {
       title: 'dopin',
       theme: lightTheme,
       darkTheme: darkTheme,
-      // themeMode:
-      //     appThemeState.isDarkModeEnabled ? ThemeMode.dark : ThemeMode.light,
       routeInformationParser: routes.routeInformationParser,
       routerDelegate: routes.routerDelegate,
     );
   }
 }
+
+
+
+
+
+
 
 // class Dopin extends StatelessWidget {
 //   const Dopin({Key? key}) : super(key: key);
@@ -44,8 +48,6 @@ class Dopin extends ConsumerWidget {
 //     );
 //   }
 // }
-
-
 // final countProvider = StateProvider.autoDispose<int>((ref) => 0);
 
 // class TestApp extends ConsumerWidget {

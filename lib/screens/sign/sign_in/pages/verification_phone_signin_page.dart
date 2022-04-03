@@ -27,7 +27,7 @@ class VerificationPhoneSignInPage extends ConsumerWidget {
             fontWeight: FontWeight.w600,
           ),
         ),
-        InputBox(title: 'Verification Code', child: Container()),
+        const InputBox(title: 'Verification Code', child: SizedBox()),
         Container(
           width: double.infinity,
           margin: const EdgeInsets.symmetric(vertical: 7),

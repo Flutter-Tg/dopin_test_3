@@ -42,7 +42,9 @@ class NetworkImageFade extends StatelessWidget {
           placeholderBuilder: OctoPlaceholder.blurHash(
             'LEHV6nWB2yk8pyo0adR*.7kCMdnj',
           ),
-          errorBuilder: OctoError.icon(color: Colors.black),
+          errorBuilder: OctoError.circleAvatar(
+              backgroundColor: const Color.fromRGBO(0, 0, 0, 0.4),
+              text: const Text('')),
           fit: BoxFit.cover,
         ),
       ),

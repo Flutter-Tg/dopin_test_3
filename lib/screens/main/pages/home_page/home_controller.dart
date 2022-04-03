@@ -6,3 +6,5 @@ final pageControllerProvider = StateProvider.autoDispose<PageController>((ref) {
       PageController(initialPage: 0, keepPage: true);
   return pageController;
 });
+
+final tabStickyProvider = StateProvider.autoDispose<bool>((ref) => false);

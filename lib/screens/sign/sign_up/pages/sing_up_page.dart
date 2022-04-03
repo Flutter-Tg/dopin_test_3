@@ -30,7 +30,7 @@ class SignUpPage extends ConsumerWidget {
           ),
         ),
         const SizedBox(height: 10),
-        InputBox(title: 'Phone Number', child: Container()),
+        const InputBox(title: 'Phone Number', child: SizedBox()),
         InkWell(
             onTap: () => pageController.state.nextPage(
                 duration: const Duration(milliseconds: 300),

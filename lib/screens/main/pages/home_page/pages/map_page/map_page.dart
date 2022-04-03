@@ -7,15 +7,15 @@ class MapPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('object');
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
         statusBarIconBrightness: Brightness.light,
       ),
     );
-    return Container(
+    return const ColoredBox(
       color: Colors.black,
-      child: const Center(
+      child: Align(
+        alignment: Alignment.center,
         child: SizedBox(
           width: 50,
           height: 50,

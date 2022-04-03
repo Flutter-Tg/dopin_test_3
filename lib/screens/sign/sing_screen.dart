@@ -62,7 +62,8 @@ class SignScreen extends StatelessWidget {
                   ),
                   const Padding(
                     padding: EdgeInsets.symmetric(vertical: 20),
-                    child: Center(
+                    child: Align(
+                      alignment: Alignment.center,
                       child: Text(
                         'Or continue with',
                         style: TextStyle(

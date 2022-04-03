@@ -1,11 +1,10 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'package:dopin_test_3/config/constans/app_constans.dart';
 import 'package:dopin_test_3/config/constans/assets_path.dart';
+import 'package:dopin_test_3/utils/styles/back_blure.dart';
 import 'package:dopin_test_3/utils/styles/gradient_icon.dart';
 import 'package:dopin_test_3/utils/styles/gradient_text.dart';
 
@@ -42,24 +41,20 @@ class HomeScreen extends HookConsumerWidget {
         Consumer(
           builder: (context, ref, child) {
             final isDark = ref.watch(checkIfUserIsInMapPageProvider);
-            return SizedBox(
-              width: double.infinity,
-              height: 60 + MediaQuery.of(context).viewPadding.top,
-              child: ClipRRect(
-                child: BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 16, sigmaY: 16),
-                  child: Container(
-                    // duration: const Duration(milliseconds: 500),
-                    // curve: Curves.fastOutSlowIn,
+            return BackBlur(
+              child: SizedBox(
+                width: double.infinity,
+                height: 60 + MediaQuery.of(context).viewPadding.top,
+                child: ColoredBox(
+                  color: isDark == true
+                      ? const Color.fromRGBO(0, 0, 0, 0.95)
+                      : const Color.fromRGBO(255, 255, 255, 0.95),
+                  child: Padding(
                     padding: EdgeInsets.only(
                       left: 20,
                       right: 20,
                       top: MediaQuery.of(context).viewPadding.top,
                     ),
-                    height: 105,
-                    color: isDark == true
-                        ? const Color.fromRGBO(0, 0, 0, 0.95)
-                        : const Color.fromRGBO(255, 255, 255, 0.95),
                     child: Stack(
                       alignment: Alignment.center,
                       children: [
@@ -195,7 +190,7 @@ class HomeScreen extends HookConsumerWidget {
                               const SizedBox(width: 10),
                               InkWell(
                                 // set route
-                                onTap: () => context.go('/home/sign/:'),
+                                onTap: () => context.goNamed('sign'),
                                 child: isDark == true
                                     ? Container(
                                         width: 43,

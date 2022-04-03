@@ -27,10 +27,10 @@ class InformationPage extends ConsumerWidget {
             fontWeight: FontWeight.w600,
           ),
         ),
-        InputBox(title: 'Usename', child: Container()),
-        InputBox(title: 'Email address', child: Container()),
-        InputBox(title: 'Password', child: Container()),
-        InputBox(title: 'Re-Password', child: Container()),
+        const InputBox(title: 'Usename', child: SizedBox()),
+        const InputBox(title: 'Email address', child: SizedBox()),
+        const InputBox(title: 'Password', child: SizedBox()),
+        const InputBox(title: 'Re-Password', child: SizedBox()),
         InkWell(
           onTap: () => pageController.state.nextPage(
               duration: const Duration(milliseconds: 300), curve: Curves.ease),

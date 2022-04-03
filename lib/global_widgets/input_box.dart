@@ -67,7 +67,7 @@ class InputBoxState extends State<InputBox> {
                         ),
                       ],
                     )
-                  : Container(),
+                  : const SizedBox(),
             ],
           ),
           const SizedBox(height: 20),

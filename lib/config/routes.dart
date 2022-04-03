@@ -1,3 +1,4 @@
+import 'package:dopin_test_3/screens/dopin_detail/dopin_detail_screen.dart';
 import 'package:dopin_test_3/screens/main/main_screen.dart';
 import 'package:dopin_test_3/screens/sign/sign_in/sign_in_screen.dart';
 import 'package:dopin_test_3/screens/sign/sign_up/sign_up_screen.dart';
@@ -26,6 +27,7 @@ final GoRouter routes = GoRouter(
               const begin = Offset(1.0, 0.0);
               const end = Offset.zero;
               final tween = Tween(begin: begin, end: end);
+
               final offsetAnimation = animation.drive(tween);
               return SlideTransition(
                 position: offsetAnimation,
@@ -50,6 +52,44 @@ final GoRouter routes = GoRouter(
                 child: const SingUpScreen(),
               ),
             ),
+          ],
+        ),
+        GoRoute(
+          path: 'dopin_detail/:',
+          name: 'dopin_detail',
+          pageBuilder: (context, state) => CustomTransitionPage<void>(
+            key: state.pageKey,
+            child: const DopinDetailScreen(),
+            transitionDuration: const Duration(milliseconds: 100),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+              const begin = Offset(1.0, 0.0);
+              const end = Offset.zero;
+              final tween = Tween(begin: begin, end: end);
+              final offsetAnimation = animation.drive(tween);
+              return SlideTransition(
+                position: offsetAnimation,
+                child: child,
+              );
+            },
+          ),
+          routes: [
+            // GoRoute(
+            //   path: 'signIn/:',
+            //   name: 'signIn',
+            //   pageBuilder: (context, state) => NoTransitionPage<void>(
+            //     key: state.pageKey,
+            //     child: const SingInScreen(),
+            //   ),
+            // ),
+            // GoRoute(
+            //   path: 'signUp/:',
+            //   name: 'signUp',
+            //   pageBuilder: (context, state) => NoTransitionPage<void>(
+            //     key: state.pageKey,
+            //     child: const SingUpScreen(),
+            //   ),
+            // ),
           ],
         ),
       ],

@@ -11,7 +11,6 @@ import 'pages/search_page/search_page.dart';
 
 class MainScreen extends ConsumerWidget {
   const MainScreen({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     List<Widget> pages = [
@@ -57,138 +56,142 @@ class MainScreen extends ConsumerWidget {
                         ),
                       ),
                     ),
-                    Container(
-                      padding: const EdgeInsets.only(top: 00, left: 20),
+                    ConstrainedBox(
                       constraints: const BoxConstraints(maxWidth: 600),
-                      child: Consumer(builder: (context, ref, child) {
-                        final pageIndex =
-                            ref.watch(mainPageIndexProvider.state);
-                        return Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                pageIndex.state = 0;
-                                ref.watch(checkIfUserIsInMapPageProvider);
-                              },
-                              child: BottomBarIcon(
-                                icon: pageIndex.state == 0
-                                    ? Icons.home
-                                    : Icons.home_outlined,
-                                text: 'Home',
-                                color: pageIndex.state == 0
-                                    ? primaryPink
-                                    : isDark == true
-                                        ? Colors.white
-                                        : Colors.black,
-                              ),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                ref.watch(checkIfUserIsInMapPageProvider);
-                                pageIndex.state = 1;
-                              },
-                              child: BottomBarIcon(
-                                icon: pageIndex.state == 1
-                                    ? Icons.manage_search
-                                    : Icons.manage_search_outlined,
-                                text: 'Search',
-                                color: pageIndex.state == 1
-                                    ? primaryPink
-                                    : isDark == true
-                                        ? Colors.white
-                                        : Colors.black,
-                              ),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                ref.watch(checkIfUserIsInMapPageProvider);
-                                pageIndex.state = 2;
-                              },
-                              child: BottomBarIcon(
-                                icon: pageIndex.state == 2
-                                    ? Icons.upcoming
-                                    : Icons.upcoming_outlined,
-                                text: 'Inbox',
-                                color: pageIndex.state == 2
-                                    ? primaryPink
-                                    : isDark == true
-                                        ? Colors.white
-                                        : Colors.black,
-                              ),
-                            ),
-                            Container(
-                                width: 161,
-                                height: 43,
-                                padding: const EdgeInsets.only(right: 20),
-                                // margin: EdgeInsets.only(right: 10),
-                                decoration: BoxDecoration(
-                                  gradient: const LinearGradient(
-                                    begin: Alignment.topCenter,
-                                    end: Alignment(0.2, 0.9),
-                                    colors: [
-                                      primaryPink,
-                                      primaryBlue,
-                                    ],
-                                  ),
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: const Radius.circular(30),
-                                    bottomLeft: const Radius.circular(30),
-                                    topRight: Radius.circular(
-                                        MediaQuery.of(context).size.width >= 600
-                                            ? 30
-                                            : 0),
-                                    bottomRight: Radius.circular(
-                                        MediaQuery.of(context).size.width >= 600
-                                            ? 30
-                                            : 0),
-                                  ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 00, left: 20),
+                        child: Consumer(builder: (context, ref, child) {
+                          final pageIndex =
+                              ref.watch(mainPageIndexProvider.state);
+                          return Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  pageIndex.state = 0;
+                                  ref.watch(checkIfUserIsInMapPageProvider);
+                                },
+                                child: BottomBarIcon(
+                                  icon: pageIndex.state == 0
+                                      ? Icons.home
+                                      : Icons.home_outlined,
+                                  text: 'Home',
+                                  color: pageIndex.state == 0
+                                      ? primaryPink
+                                      : isDark == true
+                                          ? Colors.white
+                                          : Colors.black,
                                 ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: const [
-                                    Icon(
-                                      Icons.control_point_rounded,
-                                      size: 28,
-                                      color: Colors.white,
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  ref.watch(checkIfUserIsInMapPageProvider);
+                                  pageIndex.state = 1;
+                                },
+                                child: BottomBarIcon(
+                                  icon: pageIndex.state == 1
+                                      ? Icons.manage_search
+                                      : Icons.manage_search_outlined,
+                                  text: 'Search',
+                                  color: pageIndex.state == 1
+                                      ? primaryPink
+                                      : isDark == true
+                                          ? Colors.white
+                                          : Colors.black,
+                                ),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  ref.watch(checkIfUserIsInMapPageProvider);
+                                  pageIndex.state = 2;
+                                },
+                                child: BottomBarIcon(
+                                  icon: pageIndex.state == 2
+                                      ? Icons.upcoming
+                                      : Icons.upcoming_outlined,
+                                  text: 'Inbox',
+                                  color: pageIndex.state == 2
+                                      ? primaryPink
+                                      : isDark == true
+                                          ? Colors.white
+                                          : Colors.black,
+                                ),
+                              ),
+                              Container(
+                                  width: 161,
+                                  height: 43,
+                                  padding: const EdgeInsets.only(right: 20),
+                                  // margin: EdgeInsets.only(right: 10),
+                                  decoration: BoxDecoration(
+                                    gradient: const LinearGradient(
+                                      begin: Alignment.topCenter,
+                                      end: Alignment(0.2, 0.9),
+                                      colors: [
+                                        primaryPink,
+                                        primaryBlue,
+                                      ],
                                     ),
-                                    SizedBox(width: 5),
-                                    Text(
-                                      'NEW DOPIN',
-                                      style: TextStyle(
-                                        fontFamily: fontPo,
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: const Radius.circular(30),
+                                      bottomLeft: const Radius.circular(30),
+                                      topRight: Radius.circular(
+                                          MediaQuery.of(context).size.width >=
+                                                  600
+                                              ? 30
+                                              : 0),
+                                      bottomRight: Radius.circular(
+                                          MediaQuery.of(context).size.width >=
+                                                  600
+                                              ? 30
+                                              : 0),
+                                    ),
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: const [
+                                      Icon(
+                                        Icons.control_point_rounded,
+                                        size: 28,
                                         color: Colors.white,
-                                        fontSize: 16, // fontTitleSmall
-                                        fontWeight: FontWeight.w700,
                                       ),
-                                    ),
-                                  ],
-                                )
-                                //  Column(
-                                //     mainAxisAlignment: MainAxisAlignment.center,
-                                //     children: const [
-                                //       Text(
-                                //         'Your Dopin',
-                                //         style: TextStyle(
-                                //           color: Colors.white,
-                                //           fontSize: fontTitleSmall,
-                                //           fontWeight: FontWeight.w700,
-                                //         ),
-                                //       ),
-                                //       Text(
-                                //         'Start 14:00Pm',
-                                //         style: TextStyle(
-                                //           color: Colors.white,
-                                //           fontSize: fontText,
-                                //           fontWeight: FontWeight.w400,
-                                //         ),
-                                //       ),
-                                //     ],
-                                //   ),
-                                ),
-                          ],
-                        );
-                      }),
+                                      SizedBox(width: 5),
+                                      Text(
+                                        'NEW DOPIN',
+                                        style: TextStyle(
+                                          fontFamily: fontPo,
+                                          color: Colors.white,
+                                          fontSize: 16, // fontTitleSmall
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                  //  Column(
+                                  //     mainAxisAlignment: MainAxisAlignment.center,
+                                  //     children: const [
+                                  //       Text(
+                                  //         'Your Dopin',
+                                  //         style: TextStyle(
+                                  //           color: Colors.white,
+                                  //           fontSize: fontTitleSmall,
+                                  //           fontWeight: FontWeight.w700,
+                                  //         ),
+                                  //       ),
+                                  //       Text(
+                                  //         'Start 14:00Pm',
+                                  //         style: TextStyle(
+                                  //           color: Colors.white,
+                                  //           fontSize: fontText,
+                                  //           fontWeight: FontWeight.w400,
+                                  //         ),
+                                  //       ),
+                                  //     ],
+                                  //   ),
+                                  ),
+                            ],
+                          );
+                        }),
+                      ),
                     )
                   ],
                 ),
