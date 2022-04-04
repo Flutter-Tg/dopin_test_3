@@ -2,27 +2,43 @@ import 'package:dopin_test_3/utils/network_imag_fade.dart';
 import 'package:flutter/material.dart';
 
 class NestedAvatart extends StatelessWidget {
+  const NestedAvatart(
+      {Key? key,
+      required this.images,
+      required this.width,
+      required this.height})
+      : super(key: key);
   final List<String> images;
-  const NestedAvatart({Key? key, required this.images}) : super(key: key);
+  final double width;
+  final double height;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 50,
-      height: 26,
+      width: width,
+      height: height,
       child: Stack(
         alignment: Alignment.centerLeft,
         children: [
           Positioned(
-              left: 30,
+              left: height / 0.9,
               child: NetworkImageFade(
-                  width: 18, height: 18, imageUrl: images[2], radius: 18)),
+                  width: height * 0.6,
+                  height: height * 0.6,
+                  imageUrl: images[2],
+                  radius: height)),
           Positioned(
-              left: 15,
+              left: height / 1.7,
               child: NetworkImageFade(
-                  width: 22, height: 22, imageUrl: images[1], radius: 18)),
+                  width: height * 0.8,
+                  height: height * 0.8,
+                  imageUrl: images[1],
+                  radius: height)),
           NetworkImageFade(
-              width: 26, height: 26, imageUrl: images[0], radius: 18),
+              width: height,
+              height: height,
+              imageUrl: images[0],
+              radius: height),
         ],
       ),
     );

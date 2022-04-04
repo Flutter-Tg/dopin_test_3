@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'package:dopin_test_3/global_widgets/bars/lite_appbar.dart';
-
 import 'pages/detail_page/detail_page.dart';
 
 class DopinDetailScreen extends ConsumerWidget {

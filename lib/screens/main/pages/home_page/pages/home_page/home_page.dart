@@ -79,6 +79,8 @@ class HomePage extends HookConsumerWidget {
                           Row(
                             children: const [
                               NestedAvatart(
+                                height: 26,
+                                width: 46,
                                 images: [
                                   'https://i.pinimg.com/564x/6a/b2/b1/6ab2b1afec93b5915bbdcaba6feefb45.jpg',
                                   'https://i.pinimg.com/564x/c8/0e/53/c80e53e79c805fb7f1a3649930276b4d.jpg',

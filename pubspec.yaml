@@ -29,6 +29,7 @@ flutter:
 
   assets:
     - assets/images/fun.png
+    - assets/images/map.png
     - assets/images/sign.jpg
     - assets/icons/location3D.png
     - assets/icons/earth3D.png
