@@ -57,6 +57,7 @@ final GoRouter routes = GoRouter(
                 state,
                 const DopinManagePage(),
               ),
+              routes: [],
             ),
           ],
         ),

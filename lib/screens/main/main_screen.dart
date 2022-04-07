@@ -13,23 +13,65 @@ class MainScreen extends ConsumerWidget {
   const MainScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    List<Widget> pages = [
-      const HomeScreen(),
-      const SearchPage(),
-      const InboxPage(),
-    ];
+    // List<Widget> pages = [
+    //   const HomeScreen(),
+    //   const SearchPage(),
+    //   const InboxPage(),
+    // ];
     return Material(
       color: primaryWhite,
       child: Stack(
         alignment: Alignment.bottomCenter,
         children: [
-          Consumer(
-            builder: (context, ref, child) {
-              return pages
-                  .elementAt(ref.watch(mainPageIndexProvider.state).state);
+          // Consumer(
+          //   builder: (context, ref, child) {
+          //     return pages
+          //         .elementAt(ref.watch(mainPageIndexProvider.state).state);
+          //   },
+          // ),
+          // Consumer(
+          //   builder: (context, ref, child) {
+          //     return PageView(
+          //       controller: ref.watch(mainPagControllerProvider),
+          //       children: const [
+          //         HomeScreen(),
+          //         SearchPage(),
+          //         InboxPage(),
+          //       ],
+          //     );
+          //   },
+          // ),
+          Navigator(
+            initialRoute: '/home',
+            onGenerateRoute: (RouteSettings settings) {
+              Widget page = const HomeScreen();
+              switch (settings.name) {
+                case '/home':
+                  page = const HomeScreen();
+                  break;
+                case '/search':
+                  page = const SearchPage();
+                  break;
+                case '/inbox':
+                  page = const InboxPage();
+                  break;
+              }
+              // if (settings.name == '/home') {
+              //   page = const HomeScreen();
+              // } else if (settings.name == '/search') {
+              //   page = const SearchPage();
+              // } else if (settings.name == '/inbox') {
+              //   page = const InboxPage();
+              // }
+
+              return MaterialPageRoute<dynamic>(
+                builder: (context) {
+                  return page;
+                },
+                settings: settings,
+              );
             },
           ),
-          // const DopinBottomBar(isdark: false),
           Consumer(
             builder: (context, ref, child) {
               final isDark = ref.watch(checkIfUserIsInMapPageProvider);
@@ -70,6 +112,7 @@ class MainScreen extends ConsumerWidget {
                                 onTap: () {
                                   pageIndex.state = 0;
                                   ref.watch(checkIfUserIsInMapPageProvider);
+                                  Navigator.pushNamed(context, '/home');
                                 },
                                 child: BottomBarIcon(
                                   icon: pageIndex.state == 0
@@ -87,6 +130,7 @@ class MainScreen extends ConsumerWidget {
                                 onTap: () {
                                   ref.watch(checkIfUserIsInMapPageProvider);
                                   pageIndex.state = 1;
+                                  Navigator.pushNamed(context, '/search');
                                 },
                                 child: BottomBarIcon(
                                   icon: pageIndex.state == 1
@@ -104,6 +148,7 @@ class MainScreen extends ConsumerWidget {
                                 onTap: () {
                                   ref.watch(checkIfUserIsInMapPageProvider);
                                   pageIndex.state = 2;
+                                  Navigator.pushNamed(context, '/inbox');
                                 },
                                 child: BottomBarIcon(
                                   icon: pageIndex.state == 2

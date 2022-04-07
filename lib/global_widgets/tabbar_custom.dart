@@ -8,6 +8,7 @@ class TabBarCustom extends StatelessWidget {
   final double labelSize;
   final double unLabelSize;
   final double paddingTop;
+  final double paddingLabel;
   const TabBarCustom({
     Key? key,
     this.controller,
@@ -16,12 +17,13 @@ class TabBarCustom extends StatelessWidget {
     required this.paddingTop,
     required this.labelSize,
     required this.unLabelSize,
+    required this.paddingLabel,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: paddingTop, bottom: 10),
+      padding: EdgeInsets.only(top: paddingTop, bottom: 0),
       decoration: const BoxDecoration(
         border: Border(
           bottom: BorderSide(width: 1, color: Colors.black12),
@@ -30,6 +32,7 @@ class TabBarCustom extends StatelessWidget {
       child: TabBar(
         controller: controller,
         isScrollable: isScroll,
+        labelPadding: EdgeInsets.symmetric(horizontal: paddingLabel),
         labelColor: Colors.black,
         labelStyle: TextStyle(
             fontWeight: FontWeight.w700,

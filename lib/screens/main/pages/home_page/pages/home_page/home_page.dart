@@ -116,6 +116,7 @@ class HomePage extends HookConsumerWidget {
                   isScroll: true,
                   tabs: ['Nearby', 'Explore', 'MyDopin'],
                   paddingTop: 20,
+                  paddingLabel: 20,
                   labelSize: fontBanner,
                   unLabelSize: fontTitr,
                 ),

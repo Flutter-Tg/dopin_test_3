@@ -2,11 +2,19 @@ import 'package:dopin_test_3/config/constans/app_constans.dart';
 import 'package:dopin_test_3/global_widgets/tabbar_custom.dart';
 import 'package:flutter/material.dart';
 
-class InboxPage extends StatelessWidget {
+class InboxPage extends StatefulWidget {
   const InboxPage({Key? key}) : super(key: key);
 
   @override
+  State<InboxPage> createState() => _InboxPageState();
+}
+
+class _InboxPageState extends State<InboxPage>
+    with AutomaticKeepAliveClientMixin {
+  @override
   Widget build(BuildContext context) {
+    print('inbox');
+    super.build(context);
     return DefaultTabController(
       length: 2,
       child: NestedScrollView(
@@ -30,6 +38,7 @@ class InboxPage extends StatelessWidget {
               isScroll: false,
               tabs: ['Notifications', 'System'],
               paddingTop: 10,
+              paddingLabel: 0,
               labelSize: fontTitr,
               unLabelSize: fontTitle,
             ),
@@ -52,4 +61,7 @@ class InboxPage extends StatelessWidget {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

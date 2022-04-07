@@ -6,13 +6,20 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'search_controller.dart';
 
-class SearchPage extends HookConsumerWidget {
+class SearchPage extends StatefulHookConsumerWidget {
   const SearchPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final searchBoxTypingStatus = ref.read(searchBoxTypingStatusProvider.state);
+  ConsumerState<ConsumerStatefulWidget> createState() => _SearchPageState();
+}
+
+class _SearchPageState extends ConsumerState<SearchPage>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  Widget build(BuildContext context) {
     final searchTextController = useTextEditingController();
+    super.build(context);
+    final searchBoxTypingStatus = ref.read(searchBoxTypingStatusProvider.state);
     return DefaultTabController(
       length: 2,
       child: NestedScrollView(
@@ -102,6 +109,7 @@ class SearchPage extends HookConsumerWidget {
               isScroll: false,
               tabs: ['Peoples', 'Dopins'],
               paddingTop: 10,
+              paddingLabel: 0,
               labelSize: fontTitr,
               unLabelSize: fontTitle,
             ),
@@ -126,4 +134,7 @@ class SearchPage extends HookConsumerWidget {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

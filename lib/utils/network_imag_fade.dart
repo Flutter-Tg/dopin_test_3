@@ -23,30 +23,21 @@ class NetworkImageFade extends StatelessWidget {
       decoration: BoxDecoration(
         color: const Color.fromRGBO(157, 157, 157, 0.2),
         borderRadius: BorderRadius.all(Radius.circular(radius)),
-
-        // image: DecorationImage(
-        //   image: NetworkImage(
-        //     imageUrl,
-        //   ),
-        //   fit: BoxFit.cover,
-        //   onError: (object, stackTrace) {
-        //     print(object);
-        //     print(stackTrace);
-        //   },
-        // ),
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.all(Radius.circular(radius)),
-        child: OctoImage(
-          image: CachedNetworkImageProvider(imageUrl),
-          placeholderBuilder: OctoPlaceholder.blurHash(
-            'LEHV6nWB2yk8pyo0adR*.7kCMdnj',
-          ),
-          errorBuilder: OctoError.circleAvatar(
-              backgroundColor: const Color.fromRGBO(0, 0, 0, 0.4),
-              text: const Text('')),
-          fit: BoxFit.cover,
-        ),
+        child: imageUrl.isNotEmpty
+            ? OctoImage(
+                image: CachedNetworkImageProvider(imageUrl),
+                placeholderBuilder: OctoPlaceholder.blurHash(
+                  'LEHV6nWB2yk8pyo0adR*.7kCMdnj',
+                ),
+                errorBuilder: OctoError.circleAvatar(
+                    backgroundColor: const Color.fromRGBO(0, 0, 0, 0.4),
+                    text: const Text('')),
+                fit: BoxFit.cover,
+              )
+            : const SizedBox(),
       ),
     );
   }

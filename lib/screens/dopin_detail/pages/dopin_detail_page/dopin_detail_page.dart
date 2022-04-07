@@ -5,6 +5,7 @@ import 'package:dopin_test_3/config/constans/assets_path.dart';
 import 'package:dopin_test_3/global_widgets/bars/lite_appbar.dart';
 import 'package:dopin_test_3/global_widgets/items/sponser_item.dart';
 import 'package:dopin_test_3/global_widgets/nested_avatar.dart';
+import 'package:dopin_test_3/screens/dopin_detail/dopin_detail_controller.dart';
 import 'package:dopin_test_3/utils/flag_icon.dart';
 import 'package:dopin_test_3/utils/network_imag_fade.dart';
 import 'package:dopin_test_3/utils/styles/gray_box_container.dart';
@@ -12,11 +13,20 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class DetailPage extends ConsumerWidget {
-  const DetailPage({Key? key}) : super(key: key);
+class DopinDetailPage extends ConsumerStatefulWidget {
+  const DopinDetailPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _DopinDetailPageState();
+}
+
+class _DopinDetailPageState extends ConsumerState<DopinDetailPage>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    print('object');
     return Stack(
       children: [
         SingleChildScrollView(
@@ -66,15 +76,17 @@ class DetailPage extends ConsumerWidget {
                               ],
                               rightChildren: [
                                 InkWell(
-                                  onTap: () => context.goNamed('dopin_manage'),
+                                  onTap: () => ref
+                                      .read(dopinDetailPagControllerProvider)
+                                      .jumpToPage(1),
                                   child: Icon(
                                     Icons.settings,
                                     size: 24,
                                     color: Colors.white,
                                   ),
                                 ),
-                                SizedBox(width: 26),
-                                Icon(
+                                const SizedBox(width: 26),
+                                const Icon(
                                   Icons.switch_access_shortcut,
                                   size: 24,
                                   color: Colors.white,
@@ -82,13 +94,13 @@ class DetailPage extends ConsumerWidget {
                               ],
                               title: 'Dopin Details',
                             ),
-                            SizedBox(height: 15),
+                            const SizedBox(height: 15),
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Expanded(
-                                  child: const Text(
+                                const Expanded(
+                                  child: Text(
                                     "Let's Go on Jamaya Watter Park",
                                     style: TextStyle(
                                       overflow: TextOverflow.clip,
@@ -599,4 +611,7 @@ class DetailPage extends ConsumerWidget {
       ],
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

@@ -18,7 +18,7 @@ class _NearbyTabState extends State<NearbyTab>
     super.build(context);
     return RemoveScrollGlow(
       child: ListView.builder(
-        padding: EdgeInsets.zero,
+        padding: const EdgeInsets.only(bottom: 60),
         itemCount: 20,
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
